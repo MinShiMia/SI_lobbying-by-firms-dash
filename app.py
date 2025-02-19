@@ -75,23 +75,18 @@ agg_avg_expenses = (
     .reset_index(name='Average Expenses')
 )
 
-
-# Initialize Dash App
-app = dash.Dash(__name__)
-app.title = "LDA Frequency and Expenses Dashboard"
-
 # App Layout
 app.layout = html.Div([
-# App Title
-    html.H1(
-        "LDA Filing Frequency and Lobbying Expenses by Lobbying Firm Dashboard",
-        style={
-            'text-align': 'center',
-            'font-size': '22px',
-            'margin-bottom': '20px',  # Reduce space below the title
-            'margin-top': '20px'       # Reduce space above the title
-        }
-    ),
+    # # App Title
+    # html.H1(
+    #     "LDA Filing Frequency and Lobbying Expenses by Lobbying Firm Dashboard",
+    #     style={
+    #         'text-align': 'center',
+    #         'font-size': '14px',
+    #         'margin-bottom': '00px',  # Reduce space below the title
+    #         'margin-top': '00px'       # Reduce space above the title
+    #     }
+    # ),
     # Filter Section at the Top
     html.Div([
         # Select Year filter
@@ -140,35 +135,65 @@ app.layout = html.Div([
                 clearable=False
             ),
         ], style={'width': '24%', 'display': 'inline-block'})
-    ], style={'width': '100%', 'display': 'flex', 'justify-content': 'space-between', 'margin-bottom': '0px'}),
+    ], style={
+            'width': '100%',
+            'display': 'flex',
+            'justify-content': 'space-between',
+            'align-items': 'center',
+            'margin-bottom': '0px',
+            'fontFamily': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+            'fontSize': '12px',
+            'color': '#333'
+        }),
 
     # Dual-Axis Bar Chart
-    dcc.Graph(id='dual-axis-bar-chart', style={"height": "650px"}),
+    dcc.Graph(id='dual-axis-bar-chart', style={
+            'width': '100%',
+            'display': 'flex',
+            'justify-content': 'space-between',
+            'align-items': 'center',
+            'margin-bottom': '0px',
+            'fontFamily': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+            'fontSize': '14px',
+            'color': '#333'
+        }),
 
     # Dynamic Title Section
-    html.Div(id='dynamic-title', style={'font-size': '20px', 'font-weight': 'bold', 'margin-bottom': '0px'}),
+    html.Div(id='dynamic-title', style={'font-size': '14px', 'font-weight': 'bold', 'justify-content': 'space-between',
+            'align-items': 'center',
+            'margin-bottom': '5px',
+            'fontFamily': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+            'fontSize': '14px', 'margin-bottom': '10px'}),
 
     # Time Series Plots (Three Columns with Reduced Space and Y-axis Titles)
     html.Div([
         html.Div([
-            dcc.Graph(id='frequency-time-series-plot', style={"height": "400px"}),
+            dcc.Graph(id='frequency-time-series-plot', style={"height": "250px"}),
             html.Div("LDA Frequency Over Time",
                      style={'text-align': 'center', 'font-size': '14px', 'font-weight': 'bold'})
         ], style={'width': '33%', 'display': 'inline-block', 'padding-right': '10px'}),
 
         html.Div([
-            dcc.Graph(id='expenses-time-series-plot', style={"height": "400px"}),
+            dcc.Graph(id='expenses-time-series-plot', style={"height": "250px"}),
             html.Div("Total Lobbying Expenses (in Millions)",
                      style={'text-align': 'center', 'font-size': '14px', 'font-weight': 'bold'})
         ], style={'width': '33%', 'display': 'inline-block'}),
 
         html.Div([
-            dcc.Graph(id='avg-expenses-time-series-plot', style={"height": "400px"}),
+            dcc.Graph(id='avg-expenses-time-series-plot', style={"height": "250px"}),
             html.Div("Average Lobbying Expenses",
                      style={'text-align': 'center', 'font-size': '14px', 'font-weight': 'bold'})
         ], style={'width': '33%', 'display': 'inline-block'})
-    ], style={'width': '100%', 'display': 'flex', 'justify-content': 'space-between', 'margin-top': '0px'}),
-
+    ], style={
+            'width': '100%',
+            'display': 'flex',
+            'justify-content': 'space-between',
+            'align-items': 'center',
+            'margin-bottom': '0px',
+            'fontFamily': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+            'fontSize': '14px',
+            'color': '#333'
+        })
 ])
 
 
@@ -332,8 +357,8 @@ def update_time_series_plot(clickData):
         title="",
         yaxis_title="Frequency",
         xaxis_title="Year-Quarter",
-        height=400,
-        margin=dict(t=20, b=40)
+        height=250,
+        margin=dict(t=00, b=00)
     )
 
     # Expenses Time Series Data
@@ -356,11 +381,11 @@ def update_time_series_plot(clickData):
     ))
     exp_fig.update_layout(
         title="",
-        yaxis_title="Lobbying Expenses (Millions)",
+        yaxis_title="Lobbying Expenses",
         # yaxis_tickformat=",.2f",
         xaxis_title="Year-Quarter",
-        height=400,
-        margin=dict(t=20, b=40)
+        height=250,
+        margin=dict(t=00, b=00)
     )
 
     # Expenses Time Series Data
@@ -383,16 +408,18 @@ def update_time_series_plot(clickData):
     ))
     avg_exp_fig.update_layout(
         title="",
-        yaxis_title="Average Lobbying Expenses per LDA",
+        yaxis_title="Avg Lobbying Expenses",
         # yaxis_tickformat=",.2f",
         xaxis_title="Year-Quarter",
-        height=400,
-        margin=dict(t=20, b=40)
+        height=250,
+        margin=dict(t=00, b=00)
     )
 
     return freq_fig, exp_fig, avg_exp_fig
 
 # Run the app
+# if __name__ == "__main__":
+#     port = int(os.environ.get("PORT", 8050))
+#     app.run_server(debug=True, host="0.0.0.0", port=port)
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8050))
-    app.run_server(debug=True, host="0.0.0.0", port=port)
+    app.run_server(debug=True)
