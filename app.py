@@ -3,7 +3,7 @@
 '''
 
 import dash
-from dash import Dash, dcc, html, dash_table, dcc
+from dash import Dash, dcc, html, dash_table
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import plotly.express as px
@@ -12,7 +12,8 @@ import io
 import os
 import requests
 
-app = Dash(__name__, title="lobbying-by-swi-issue-area-dash")
+
+app = Dash(__name__, title="lobbying-by-firms-dash")
 
 # Declare server for Heroku deployment. Needed for Procfile.
 server = app.server
@@ -33,9 +34,9 @@ def load_csv_from_github(url):
 
 
 # URLs for CSV files
-df_frequency_url = "https://raw.githubusercontent.com/MinShiMia/SI_lobbying-by-firms-dash/main/lda_quarterly_frequency_by_registrant_organization_over_time.csv"
-df_expenses_url = "https://raw.githubusercontent.com/MinShiMia/SI_lobbying-by-firms-dash/main/lda_quarterly_total_lobbying_expenses_by_registrant_organization_over_time.csv"
-df_avg_expenses_url = "https://raw.githubusercontent.com/MinShiMia/SI_lobbying-by-firms-dash/main/lda_quarterly_avg_lobbying_expenses_by_registrant_organization_over_time.csv"
+df_frequency_url = "https://raw.githubusercontent.com/MinShiMia/SI_lobbying-by-firms-dash/main/data/lda_quarterly_frequency_by_registrant_organization_over_time.csv"
+df_expenses_url = "https://raw.githubusercontent.com/MinShiMia/SI_lobbying-by-firms-dash/main/data/lda_quarterly_total_lobbying_expenses_by_registrant_organization_over_time.csv"
+df_avg_expenses_url = "https://raw.githubusercontent.com/MinShiMia/SI_lobbying-by-firms-dash/main/data/lda_quarterly_avg_lobbying_expenses_by_registrant_organization_over_time.csv"
 
 # Load the data
 df_frequency = load_csv_from_github(df_frequency_url)
